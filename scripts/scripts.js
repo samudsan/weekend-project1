@@ -12,3 +12,19 @@ btn_share.addEventListener("click", function () {
     btn_share.textContent = "share a fact";
   }
 });
+
+let votesInteresting = 23;
+let votesMindblowing = 23;
+let votesFalse = 0;
+
+const btn_votes_interesting = document.querySelector(".votes-interesting");
+const btn_votes_mindblowing = document.querySelector(".votes-mindblowing");
+const btn_votes_false = document.querySelector(".votes-false");
+
+btn_votes_interesting.addEventListener("click", function () {
+  votesInteresting = btn_votes_interesting;
+});
+
+if (votesInteresting === votesMindblowing) {
+  console.log("both are equal");
+}
