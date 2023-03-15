@@ -31,25 +31,47 @@ const initialFacts = [
     createdIn: 2015,
   },
 ];
+
+const CATEGORIES = [
+  { name: "technology", color: "#3b82f6" },
+  { name: "science", color: "#16a34a" },
+  { name: "finance", color: "#ef4444" },
+  { name: "society", color: "#eab308" },
+  { name: "entertainment", color: "#db2777" },
+  { name: "health", color: "#14b8a6" },
+  { name: "history", color: "#f97316" },
+  { name: "news", color: "#8b5cf6" },
+];
+
 //selecting dom elements
 const btnShare = document.querySelector(".btn-open-sharefact");
 const formFact = document.querySelector(".fact-form");
 const factList = document.querySelector(".fact_section");
 
-//create dom elements : render facts list
-factList.innerHTML = "";
-let factHtmlText = initialFacts.map(
-  (fact) => `<li class="fact">${fact.text}</li>`
-);
-let factHtmlSource = initialFacts.map(
-  (fact) => `<a class="source">${fact.source}</a>`
-);
+createFactsList(initialFacts);
 
-factHtml = factHtml.join("");
-// factHtmlSource = factHtmlSource.join("");
-factList.insertAdjacentHTML("afterbegin", factHtml);
-factList.insertAdjacentHTML("afterbegin", factHtmlSource);
-console.log(factHtml);
+//create dom elements : render facts list
+function createFactsList(dataArray) {
+  factList.innerHTML = "";
+  let factHtmlText = dataArray.map(
+    (fact) => `<li class="fact">
+  <p>
+  ${fact.text}
+  <a
+    class="source"
+    href="${fact.source}"
+    target="_blank"
+    >source</a
+  >
+</p>
+<span class="fact-tag" style="background-color: #3b82f6"
+  >${fact.category}</span
+></li>`
+  );
+
+  factHtmlText = factHtmlText.join("");
+  factList.insertAdjacentHTML("afterbegin", factHtmlText);
+}
 
 //toggling form visibility
 btnShare.addEventListener("click", function () {
