@@ -43,12 +43,30 @@ const CATEGORIES = [
   { name: "news", color: "#8b5cf6" },
 ];
 
+loadFactsDatafromDB();
+async function loadFactsDatafromDB() {
+  const response = await fetch(
+    "https://jphffcaehhqxjtqjxxgo.supabase.co/rest/v1/fact",
+    {
+      headers: {
+        apikey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpwaGZmY2FlaGhxeGp0cWp4eGdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzc0NTUyMDQsImV4cCI6MTk5MzAzMTIwNH0.IUsn11iVNurEeRvkjUmhAqY1KaLg8yp-I-gC_-vm2Sw",
+        authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpwaGZmY2FlaGhxeGp0cWp4eGdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzc0NTUyMDQsImV4cCI6MTk5MzAzMTIwNH0.IUsn11iVNurEeRvkjUmhAqY1KaLg8yp-I-gC_-vm2Sw",
+      },
+    }
+  );
+  const data = await response.json();
+  console.log(data);
+  createFactsList(data);
+}
+
 //selecting dom elements
 const btnShare = document.querySelector(".btn-open-sharefact");
 const formFact = document.querySelector(".fact-form");
 const factList = document.querySelector(".fact_section");
 
-createFactsList(initialFacts);
+// createFactsList(initialFacts);
 
 //create dom elements : render facts list
 function createFactsList(dataArray) {
