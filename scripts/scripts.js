@@ -57,10 +57,11 @@ async function loadFactsDatafromDB() {
     }
   );
   const data = await response.json();
-  console.log(data);
   createFactsList(data);
 }
 
+const list = [1, 23, 4, 456, 87, 8, 2];
+console.log(list.filter((ele) => ele > 10));
 //selecting dom elements
 const btnShare = document.querySelector(".btn-open-sharefact");
 const formFact = document.querySelector(".fact-form");
@@ -82,7 +83,9 @@ function createFactsList(dataArray) {
     >source</a
   >
 </p>
-<span class="fact-tag" style="background-color: #3b82f6"
+<span class="fact-tag" style="background-color: ${
+      CATEGORIES.find((cat) => cat.name === fact.category).color
+    }"
   >${fact.category}</span
 ></li>`
   );
